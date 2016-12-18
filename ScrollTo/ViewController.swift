@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate
+class ViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate
 {
 
     @IBOutlet weak var redView: UIView!
@@ -50,7 +50,7 @@ class ViewController: UIViewController, UIScrollViewDelegate
     }
     @IBAction func greenMiddle(_ sender: AnyObject)
     {
-        self.scrollView.scrollTo(view: greenView, position: .middle)
+        greenView.scrollTo(position: .middle)
     }
     @IBAction func greenBottom(_ sender: AnyObject)
     {
@@ -68,7 +68,17 @@ class ViewController: UIViewController, UIScrollViewDelegate
     }
     @IBAction func blueBottom(_ sender: AnyObject)
     {
-        self.scrollView.scrollTo(view: blueView, position: .bottom)
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            self.scrollView.scrollTo(view: self.blueView, position: .bottom, margin: 0, animated: false)
+        }) { (Bool) in
+            
+        }
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        textField.scrollTo(position: .middle)
     }
 }
 

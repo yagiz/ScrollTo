@@ -192,3 +192,75 @@ public extension UIScrollView
         return self.contentSize.height + self.contentInset.top + self.contentInset.bottom
     }
 }
+
+
+public extension UIView
+{
+    public func scrollTo(position:ScrollToPosition)
+    {
+        
+        guard let scrollView = self.findFirstScrollView(view: self) else {
+            return
+        }
+        
+        switch position {
+            
+        case .top:
+            scrollView.scrollTopTo(view: self, margin: 0, animated: true)
+        case .middle:
+            scrollView.scrollMiddleTo(view: self, margin: 0, animated: true)
+        case .bottom:
+            scrollView.scrollBottomTo(view: self, margin: 0, animated: true)
+        }
+    }
+    
+    public func scrollTo(position:ScrollToPosition, margin:CGFloat)
+    {
+        
+        guard let scrollView = self.findFirstScrollView(view: self) else {
+            return
+        }
+        
+        switch position {
+            
+        case .top:
+            scrollView.scrollTopTo(view: self, margin: margin, animated: true)
+        case .middle:
+            scrollView.scrollMiddleTo(view: self, margin: margin, animated: true)
+        case .bottom:
+            scrollView.scrollBottomTo(view: self, margin: margin, animated: true)
+        }
+    }
+    
+    public func scrollTo(position:ScrollToPosition, margin:CGFloat,animated:Bool)
+    {
+        
+        guard let scrollView = self.findFirstScrollView(view: self) else {
+            return
+        }
+
+        switch position {
+            
+        case .top:
+            scrollView.scrollTopTo(view: self, margin: margin, animated: animated)
+        case .middle:
+            scrollView.scrollMiddleTo(view: self, margin: margin, animated: animated)
+        case .bottom:
+            scrollView.scrollBottomTo(view: self, margin: margin, animated: animated)
+        }
+    }
+    
+    public func findFirstScrollView(view:UIView) -> UIScrollView?
+    {
+        guard view.superview != nil else {
+            return nil
+        }
+        
+        if view.superview is UIScrollView
+        {
+            return view.superview as? UIScrollView
+        }
+        
+        return self.findFirstScrollView(view: self.superview!)
+    }
+}

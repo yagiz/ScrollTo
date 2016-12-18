@@ -1,87 +1,44 @@
-# BubbleButton
-BubbleButton is Swift 3 button wihch does producuse bubbles.
-
-![N|Solid](http://146.185.160.107/wp-content/uploads/2016/12/bubbleButtonVideo.mov.gif)
+# ScrollTo
+ScrollTo is a little UIScrollView and UIView extension that enables to scroll through the scroll view until the given view is at a particular location on the screen. It doesn't matter if given view is in a complicated hiearchy. ScrollTo calculates the position of the view according to scroll view coordinate. It basically mimicks the behaviour of the ```scrollToRow(at:at:animated:)``` method of UITableView.
 
 ### Installation
 
 #### CocoaPods
 ```sh
-pod 'BubbleButton', '~> 0.1.1'
+pod 'ScrollTo', '~> 0.1.1'
 ```
 #### Manually
-Just download or clone the repo and move BubbleButton.swift file to your project.
+Just download or clone the repo and move ScrollTo.swift file to your project.
 
 ### Usage
-
-#### Interface Builder
-In Interface Builder you can set BubbleButton to Custom Class property of your button. Just do not forget the module field. Then you can customize its properties.
-
-![N|Solid](http://146.185.160.107/wp-content/uploads/2016/12/custom_class_ss.png)
-
-#### By Code
+You can call ```scrollTo``` method from classes that are subclasses of UIScrollView. There is no control if given view is actually contained by scroll view. Be sure that it's indeed contained by scroll view.
+#### UIScrollView (UITableView, UICollectionView)
 ```swift
-button = BubbleButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-button.backgroundColor = UIColor.gray
-button.bubbleColor = UIColor.red
-button.bubbleCount = 5
-..
-self.view.addSubview(button)
+scrollView.scrollTo(view:UIView, position:ScrollToPosition)
+scrollView.scrollTo(view:UIView, position:ScrollToPosition, margin:CGFloat)
+scrollView.scrollTo(view:UIView, position:ScrollToPosition, margin:CGFloat,animated:Bool)
 ```
-#### Starting and Ending Animation
 
-You can start animating button after it's tapped. After your progress is completed you can call "endAnimationWith" to reset button state.
+#### UIView 
+You don't need to store referance of the scroll view. ScrollTo finds the first scroll view that contains the view. This is very useful for custom cells and textfields.
 ```swift
-@IBAction func buttonAction(_ sender: AnyObject) {
-    bubbleButton.startBubbleAnimationWith(direction: .TopRight)
-    print("startingAnimation")
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        print("endingAnimation")
-        
-        self.bubbleButton.endAnimationWith {
-            print("animationIsEnded")
-        }
-    }
+view.scrollTo(position:ScrollToPosition)
+view.scrollTo(position:ScrollToPosition, margin:CGFloat)
+view.scrollTo(position:ScrollToPosition, margin:CGFloat,animated:Bool)
+```
+For example, if you want to center the text fields of a form when they do begin editing, you can write something like this:
+```swift
+func textFieldDidBeginEditing(_ textField: UITextField)
+{
+    textField.scrollTo(position: .middle)
 }
 ```
-
-### Customize
-You can customize these properties in Interface Builder or by code:
-
-### Properties
+If you want to use custom animation, you can call scrollTo method in animation block with animated argument is false:
 ```swift
-titleForProgress:String
-titleForCompletion:String
-    
-endAnimationDuration:Float
-fadeOutAnimationDelay:Float
-fadeOutAnimationDuration:Float
-    
-bubbleColor:UIColor
-bubbleCount:Int
-    
-bubbleSpeedMin:CGFloat
-bubbleSpeedMax:CGFloat
-    
-bubbleRadiusMin:CGFloat
-bubbleRadiusMax:CGFloat
-```
-
-### Direction
-direction argument of ```startBubbleAnimationWith```determines where bubbles move to.
-```swift
-public enum BubbleDirection
-{
-    case Top
-    case Left
-    case Bottom
-    case Right
-    
-    case TopLeft
-    case TopRight
-    case BottomLeft
-    case BottomRight
+UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+    self.scrollView.scrollTo(view: view, position: .middle, margin: 0, animated: false)
+}) { (Bool) in
+            
 }
 ```
 
