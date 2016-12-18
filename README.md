@@ -20,7 +20,7 @@ scrollView.scrollTo(view:UIView, position:ScrollToPosition, margin:CGFloat,anima
 ```
 
 #### UIView 
-You don't need to store referance of the scroll view. ScrollTo finds the first scroll view that contains the view. This is very useful for custom cells and textfields.
+You don't need to store reference of the scroll view. ScrollTo finds the first scroll view that contains the view. This is very useful for custom cells and textfields.
 ```swift
 view.scrollTo(position:ScrollToPosition)
 view.scrollTo(position:ScrollToPosition, margin:CGFloat)

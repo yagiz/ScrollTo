@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'ScrollTo'
-  s.version          = '0.1.0'
-  s.summary          = 'A simple extension to scroll a view in a ScrollVie(TableView,CollectionView)'
+  s.version          = '0.1.1'
+  s.summary          = 'ScrollTo is a little UIScrollView and UIView extension that enables to scroll through the scroll view until the given view is at a particular location on the screen.'
  
   s.description      = <<-DESC
-A simple extension to scroll a view in a ScrollVie(TableView,CollectionView).
+ScrollTo is a little UIScrollView and UIView extension that enables to scroll through the scroll view until the given view is at a particular location on the screen. It doesn't matter if given view is in a complicated hiearchy. ScrollTo calculates the position of the view according to scroll view coordinate. It basically mimicks the behaviour of the scrollToRow(at:at:animated:) method of UITableView.
                        DESC
  
   s.homepage         = 'https://github.com/yagiz/ScrollTo'
