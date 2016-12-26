@@ -10,9 +10,9 @@ ScrollTo is a little UIScrollView and UIView extension that enables to scroll th
   s.homepage         = 'https://github.com/yagiz/ScrollTo'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Yagiz' => 'yagizgurgul@gmail.com' }
-  s.source           = { :git => 'https://github.com/yagiz/BubbleButton.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/yagiz/ScrollTo.git', :tag => s.version.to_s }
  
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '8.0'
   s.source_files = 'ScrollTo/ScrollTo.swift'
  
 end
