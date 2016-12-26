@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ScrollTo'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'ScrollTo is a little extension to scroll through the scroll view until the given view is at a particular location on the screen.'
  
   s.description      = <<-DESC
