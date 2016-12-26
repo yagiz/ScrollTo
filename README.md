@@ -5,7 +5,7 @@ ScrollTo is a little UIScrollView and UIView extension that enables to scroll th
 
 #### CocoaPods
 ```sh
-pod 'ScrollTo', '~> 0.1.1'
+pod 'ScrollTo', '~> 0.1.2'
 ```
 #### Manually
 Just download or clone the repo and move ScrollTo.swift file to your project.
